@@ -1,0 +1,16 @@
+{
+  "name": "dynosite",
+  "version": "0.0.1-beta",
+  "description": "This is a Dynamic Site Demo",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/server.js"
+  },
+  "author": "Tim Ramsier",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  }
+}
