@@ -1,0 +1,82 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: darkslategrey;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: #222255;
+  max-width: 50rem;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  background: whitesmoke;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: slategray;
+}
+
+header > h1 {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 3rem;
+  color: slateblue;
+}
+
+nav > ul {
+  padding: 0;
+}
+
+nav > ul > li {
+  list-style: none;
+  display: inline-block;
+}
+
+nav > ul > li:first-of-type a {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+nav > ul > li:last-of-type a {
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+nav > ul > li > a {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 1.25rem;
+  line-height: 2rem;
+  padding: 0 0.5rem;
+  background: slategrey;
+  color: white;
+}
+
+nav > ul > li > a:hover {
+  transform: scale(1.05);
+}
+
+nav > ul > li > a:active {
+  transform: scale(1);
+}
+
+footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1rem 2rem;
+  background: slategray;
+  color: white;
+}

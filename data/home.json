@@ -1,0 +1,5 @@
+{
+  "pageTitle": "Dynosite | Home",
+  "headerText": "Welcome to Dynosite",
+  "contentPartial": "{[homeContent]}"
+}

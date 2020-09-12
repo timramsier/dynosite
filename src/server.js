@@ -13,18 +13,31 @@ const port = 3000;
 function getHtml(page) {
   // get the path to the template and page config
   const pathToTemplate = path.resolve("templates/index.template.html");
-  const pathToPage = path.resolve(`pages/${page}.json`);
+  const pathToData = path.resolve(`data/${page}.json`);
 
-  // read the template and page config files
-  const template = fs.readFileSync(pathToTemplate, "utf8");
-  const rawPageConfig = fs.readFileSync(pathToPage, "utf8");
+  // Set the template and page config to empty versions
+  let template = "";
+  let pageData = {};
 
-  // parse the page config and use it to create html from the
-  // template
-  const pageConfig = JSON.parse(rawPageConfig);
-  const html = templator(template, pageConfig);
+  // if the template file exists at the path then update the template to it
+  if (fs.existsSync(pathToTemplate)) {
+    template = fs.readFileSync(pathToTemplate, "utf8");
+  }
+
+  // if the data file exists at the path then update the page data to it
+  if (fs.existsSync(pathToData)) {
+    // read the template and page config files
+    const rawPageData = fs.readFileSync(pathToData, "utf8");
+
+    // parse the page config and use it to create html from the template
+    pageData = JSON.parse(rawPageData);
+  }
+  const html = templator(template, pageData);
   return html;
 }
+
+// add the ability to serve assets from the public directory
+app.use(express.static("public"));
 
 // Route for "/"
 app.get("/", (req, res) => {
@@ -34,6 +47,11 @@ app.get("/", (req, res) => {
 // Route for "/about"
 app.get("/about", (req, res) => {
   res.send(getHtml("about"));
+});
+
+// Send a basic 404 route for any route not listed above
+app.get("*", (req, res) => {
+  res.status(404).send("Page does not exist");
 });
 
 // Start the server
