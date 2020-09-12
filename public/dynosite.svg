@@ -1,0 +1,17 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 126 126">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:darkorange;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:crimson;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <style>
+    path{
+      fill: url(#grad1);
+    }
+  </style>
+  <path d="M34.05,18.25,48.42,11,41.27,25.42l15.28,5L42.4,35.23,60.84,53.66,71.23,43.27Q103.12,75.15,135,107V27A18,18,0,0,0,117,9H30.93Z" transform="translate(-9 -9)" />
+  <path d="M26.93,9a17.91,17.91,0,0,0-12.12,4.79l9.06,4.49Z" transform="translate(-9 -9)" />
+  <path d="M16.7,25.5l-4.44-8.81A17.87,17.87,0,0,0,9,27v1.1Z" transform="translate(-9 -9)" />
+  <path d="M42.45,72.05,52.84,61.66,34.1,42.91l-5,15.19L24,42.85,9.58,50.1l7.15-14.42L9,33.13V117a18,18,0,0,0,18,18h78.39Z" transform="translate(-9 -9)" />
+</svg>

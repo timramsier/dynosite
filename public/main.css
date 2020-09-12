@@ -1,23 +1,68 @@
+:root {
+  --base-size-interval: 4px;
+  /* base-font-size = 16px = 1rem */
+  --base-font-size: calc(4 * var(--base-size-interval));
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.5rem;
+  --min-main-width: 18rem;
+  --padding-standard: 1rem;
+}
+
+.theme-default {
+  /* colors */
+  --base-color-dark: #2E4053;
+  --base-color-medium: #5D6D7E;
+  --base-color-light: #AEB6BF;
+  --primary-color-dark: #1F618D;
+  --primary-color-medium: #2980B9;
+  --primary-color-light: #7FB3D5;
+  --secondary-color-dark: #117A65;
+  --secondary-color-medium: #16A085;
+  --secondary-color-light: #73C6B6;
+  --accent-color-dark: #CB4335;
+  --accent-color-medium: #EC7063;
+  --accent-color-light: #F5B7B1;
+  --color-white: #F4F6F6;
+  --color-true-white: white;
+
+  /* fonts */
+  --base-font: Arial, Helvetica, sans-serif;
+  --secondary-font: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+
+  /* other */
+  --page-background: linear-gradient(
+    25deg,
+    var(--accent-color-dark),
+    var(--primary-color-dark)
+  );
+}
+
 * {
   box-sizing: border-box;
 }
 
 html {
-  background: darkslategrey;
+  background: var(--page-background);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
   margin: 0;
-  padding: 0;
+  padding: 0 1rem;
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   position: relative;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  color: #222255;
+  font-family: var(--base-font);
+  font-size: var(--base-font-size);
+  color: var(--base-color-dark);
   max-width: 50rem;
   min-height: 100vh;
+  min-width: var(--min-main-width);
   margin: 0 auto;
   padding: 1rem 2rem;
-  background: whitesmoke;
+  background: var(--color-white);
 }
 
 h1,
@@ -25,22 +70,55 @@ h2,
 h3,
 h4,
 h5 {
-  color: slategray;
+  color: var(--base-color-medium);
 }
 
 header > h1 {
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-family: var(--secondary-font);
   font-size: 3rem;
-  color: slateblue;
+  color: var(--primary-color-light);
+  text-align: center;
+}
+
+main {
+  flex: 1 0 100%;
+}
+
+footer {
+  margin: 0 -2rem -2rem;
+  padding: 1rem 2rem;
+  background: var(--base-color-medium);
+  color: var(--color-true-white);
+}
+
+nav {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 nav > ul {
+  display: none;
+  position: relative;
+  background: var(--base-color-dark);
+  top: -0.125rem;
+  margin: 0;
   padding: 0;
+  border: 0.125rem solid var(--base-color-medium);
+  border-top-left-radius: var(--border-radius-sm);
+  border-bottom-left-radius: var(--border-radius-sm);
+  border-bottom-right-radius: var(--border-radius-sm);
+}
+
+nav:hover > ul {
+  display: inline-block;
 }
 
 nav > ul > li {
   list-style: none;
-  display: inline-block;
 }
 
 nav > ul > li:first-of-type a {
@@ -59,8 +137,7 @@ nav > ul > li > a {
   font-size: 1.25rem;
   line-height: 2rem;
   padding: 0 0.5rem;
-  background: slategrey;
-  color: white;
+  color: var(--color-true-white);
 }
 
 nav > ul > li > a:hover {
@@ -71,12 +148,74 @@ nav > ul > li > a:active {
   transform: scale(1);
 }
 
-footer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 1rem 2rem;
-  background: slategray;
-  color: white;
+nav > .hamburger {
+  z-index: 1;
+  position: relative;
+  border: solid 0.125rem transparent;
+  width: 2.1rem;
+  height: 2rem;
+}
+
+nav:hover > .hamburger,
+nav > .hamburger.open {
+  border: solid 0.125rem var(--base-color-medium);
+  border-bottom: 0px;
+  border-radius: var(--border-radius-sm);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background: var(--base-color-dark);
+}
+
+nav > .hamburger > div {
+  height: 0.25rem;
+  background: var(--base-color-dark);
+  margin: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+nav:hover > .hamburger > div {
+  background: var(--color-true-white);
+}
+
+.logo {
+  height: calc(50vw);
+  width: calc(50vw);
+}
+
+@media only screen and (min-width: 400px) {
+  header > h1 {
+    text-align: initial;
+  }
+  nav {
+    position: initial;
+    display: initial;
+  }
+
+  nav > ul {
+    display: initial;
+    background: none;
+    border: none;
+  }
+  nav > ul > li {
+    display: inline-block;
+  }
+
+  nav > ul > li > a {
+    font-size: 1.25rem;
+    line-height: 2rem;
+    padding: 0 0.5rem;
+    background: var(--primary-color-medium);
+    color: var(--color-true-white);
+  }
+
+  nav > .hamburger {
+    display: none;
+  }
+
+  .logo {
+    position: relative;
+    height: 3rem;
+    width: 3rem;
+    bottom: -0.25rem;
+  }
 }

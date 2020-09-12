@@ -1,0 +1,12 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 305.34 305.34">
+  <defs>
+    <style>
+      .top{fill:#AEB6BF;}
+      .middle{fill:#5D6D7E;}
+      .bottom{fill:#2E4053;}
+    </style>
+  </defs>
+  <rect class="top" x="386.45" y="178.1" width="216.23" height="72.48" transform="translate(-399.19 300.22) rotate(-45)" />
+  <rect class="middle" x="462.5" y="203.54" width="216.23" height="71.86" transform="translate(-394.69 361.36) rotate(-45)" />
+  <rect class="bottom" x="487.86" y="279.82" width="216.23" height="71.86" transform="translate(-441.2 401.64) rotate(-45)" />
+</svg>
