@@ -1,3 +1,6 @@
+const fs = require("fs");
+const path = require("path");
+
 /**
  * This function takes an html template, an array of spots
  * where there are {{}} replacements needed and a page config
@@ -9,11 +12,34 @@
 function replaceSpots(template, spots, pageConfig) {
   let html = template;
 
+  // a regular expression that looks for {} brackets only
+  const spotsBracketsRegEx = new RegExp(/[{}]/g);
+
   // Loop through each spot, replacing it with what the
   // page config says
   spots.forEach(function (spot) {
-    const newValue = pageConfig[spot];
+    const unbracketedSpot = spot.replace(spotsBracketsRegEx, "");
+    const newValue = pageConfig[unbracketedSpot];
     html = html.replace(spot, newValue);
+  });
+
+  return html;
+}
+
+function replacePartials(template, pageConfig) {
+  let html = template;
+  const partialRegEx = new RegExp(/{\[[^\[\]]*\]}/g);
+  const partialBracketsRegEx = new RegExp(/[[\]{\}]/g);
+
+  const partials = html.match(partialRegEx) || [];
+
+  partials.forEach(function (partial) {
+    const partialName = partial.replace(partialBracketsRegEx, "");
+
+    const partialPath = path.resolve('templates', partialName + '.partial.html');
+    const partialHtml = fs.readFileSync(partialPath, "utf8");
+
+    html = html.replace(partial, templator(partialHtml, pageConfig));
   });
 
   return html;
@@ -29,15 +55,14 @@ function templator(template, pageConfig = {}) {
   const tempRegEx = new RegExp("{{.*}}", "g");
 
   // get all template spots of {{}}
-  const spots = template.match(tempRegEx);
+  const spots = template.match(tempRegEx) || [];
 
   // default the returned html as the template
   let html = template;
-  // if template spots exist and there is at least 1 then
-  // run the replacement on them
-  if (spots && spots.length > 0) {
-    html = replaceSpots(html, spots, pageConfig);
-  }
+
+  html = replaceSpots(html, spots, pageConfig);
+
+  html = replacePartials(html, pageConfig);
 
   return html;
 }

@@ -1,5 +1,5 @@
 {
-  "{{header}}": "<h1>About Dynosite</h1>",
-  "{{hello}}": "We are a demo page on writing a dynamic website.",
-  "{{link}}": "<a href='/'>Go Home</a>"
+  "header": "About Dynosite",
+  "hello": "We are a demo page on writing a dynamic website.",
+  "link": "<a href='/'>Go Home</a>"
 }
